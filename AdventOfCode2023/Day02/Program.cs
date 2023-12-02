@@ -16,4 +16,12 @@ foreach (var line in lines)
 
 var validIDsSum = games.Where(game => GameValidator.IsValid(game, bagConfiguration)).Sum(game => game.ID);
 
+var powerSum = 0;
+
+foreach (var game in games)
+{
+    var minimumSet = MinimumConfigurationEvaluator.MinimumConfiguration(game);
+    powerSum += (minimumSet.Reds * minimumSet.Greens * minimumSet.Blues);
+}
 Console.WriteLine(validIDsSum);
+Console.WriteLine(powerSum);
